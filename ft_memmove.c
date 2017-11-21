@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dzorin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/15 17:54:48 by dzorin            #+#    #+#             */
-/*   Updated: 2017/11/21 13:15:08 by dzorin           ###   ########.fr       */
+/*   Created: 2017/11/21 14:24:34 by dzorin            #+#    #+#             */
+/*   Updated: 2017/11/21 14:24:37 by dzorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void * ft_memcpy(void * dst, const void * src, size_t n)
+void	*ft_memmove(void *s1, const void *s2, size_t n)
 {
-	size_t i;
+	unsigned char	tmp[n];
 
-	i = 0;
-	while (i < n)
-	{
-		((char *)dst)[i] = ((char *)src)[i];
-		i++;
-	}
-	return ((void *)dst);
+	ft_memcpy(tmp, s2, n);
+	ft_memcpy(s1, tmp, n);
+	return (s1);
+}
+
+int main()
+{
+unsigned char src[15]="12343557567890";
+
+unsigned char dst[15]="";
+memmove(dst, src, 3);
+printf("%s\n",dst);
+
+
+unsigned char src1[15]="12343557567890";
+
+unsigned char dst1[15]="";
+ft_memmove(dst1, src1, 3);
+printf("%s\n",dst1);
+return 0;
 }
