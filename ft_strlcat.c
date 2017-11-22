@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dzorin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 13:20:41 by dzorin            #+#    #+#             */
-/*   Updated: 2017/11/22 14:47:26 by dzorin           ###   ########.fr       */
+/*   Created: 2017/11/22 14:55:00 by dzorin            #+#    #+#             */
+/*   Updated: 2017/11/22 14:55:02 by dzorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	i;
-	int		count;
+	int i;
+	int j;
+	int k;
 
 	i = 0;
-	count = 1;
-	while (i < n && count)
+	j = 0;
+	while (dst[i] != '\0')
 	{
-		if (((char *)src)[i] == c)
-			count--;
-		((char *)dst)[i] = ((char *)src)[i];
+		i++;
+		k++;
 	}
-	return (void *)dst;
+	while (src[j] != '\0' && j < size)
+	{
+		dst[i + j] = src[j];
+		j++;
+		k++;
+	}
+	dst[i + j] = '\0';
+	return (k);
 }

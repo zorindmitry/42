@@ -14,42 +14,20 @@
 
 char	*ft_strcat(char *s1, const char *s2)
 {
-	int		len1;
-	int		len2;
-	char	*res_str;
 	int i;
-	int i1;
+	int j;
 
 	i = 0;
-	i1 = 0;
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-
-	res_str = (char *)malloc(len2 + len1 + 1);
-	while (i < len1)
+	j = 0;
+	while (s1[i] != '\0')
 	{
-		res_str[i] = s1[i1];
 		i++;
-		i1++;
 	}
-	i1 = 0;
-	while (i1 < len2)
+	while (s2[j] != '\0')
 	{
-		res_str[i] = s2[i1];
-		i++;
-		i1++;
+		s1[i + j] = s2[j];
+		j++;
 	}
-	return (res_str);
-}
-
-int main()
-{
-	char a[10] = "asd";
-	char b[10] = "qwe";
-	char * c = strcat(a, b);
-	printf("%s\n",c);
-	char a1[10] = "asd";
-	char b1[10] = "qwe";
-	char * c1 = ft_strcat(a1, b1);
-	printf("%s\n",c1);
+	s1[i + j] = '\0';
+	return (s1);
 }
