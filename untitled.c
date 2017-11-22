@@ -109,3 +109,34 @@ int main()
 	printf("%s\n",c1);
 	return 0;
 }
+
+
+
+////////ft_strcmp/////////
+int main()
+{
+	char a[99] = "qwaeqweasdqweasd";
+	char b[99] = "asd";
+	int c = strcmp(a, b);
+	printf("%d\n",c);
+	char a1[99] = "qwaeqweasdqweasd";
+	char b1[99] = "asd";
+	int c1 = ft_strcmp(a1, b1);
+	printf("%d\n",c1);
+	return 0;
+}
+
+////////ft_strncmp///////
+int main()
+{
+	char a[99] = "asd";
+	char b[99] = "as";
+	int c = strncmp(a, b, 3);
+	printf("%d\n",c);
+	char a1[99] = "asd";
+	char b1[99] = "as";
+	int c1 = ft_strncmp(a1, b1, 3);
+	printf("%d\n",c1);
+	return 0;
+}
+
