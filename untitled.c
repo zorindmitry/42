@@ -93,3 +93,19 @@ int main(int argc, char const *argv[])
 	printf("%s\n",ft_strrchr(a, 'z'));
 	return 0;
 }
+
+
+
+///////ft_strstr/////
+int main()
+{
+	char a[99] = "qwaeqweasdqweasd";
+	char b[99] = "asd";
+	char * c = strstr(a, b);
+	printf("%s\n",c);
+	char a1[99] = "qwaeqweasdqweasd";
+	char b1[99] = "asd";
+	char * c1 = ft_strstr(a1, b1);
+	printf("%s\n",c1);
+	return 0;
+}
