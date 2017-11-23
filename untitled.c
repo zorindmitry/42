@@ -171,3 +171,26 @@ int main()
 	}
 	return 0;
 }
+
+///////ft_isalnum//////ft_isascii/////
+#include <ctype.h>
+int main()
+{
+	int i = 0;
+	char c[99] = "Ca+1w*9(";
+	while (c[i] != 0)
+	{
+		printf("%d\n",isalnum(c[i]));
+		i++;
+	}
+	i = 0;
+	printf("\n");
+	char c1[99] = "Ca+1w*9(";
+	while (c1[i] != 0)
+	{
+		printf("%d\n", ft_isalnum(c1[i]));
+		i++;
+	}
+	return 0;
+}
+
