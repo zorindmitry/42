@@ -194,3 +194,17 @@ int main()
 	return 0;
 }
 
+/////////ft_strclr//////////
+int main()
+{
+	int i = 0;
+	char * c = malloc(10);
+	while (i < 9)
+	{
+		c[i] = '1';
+		i++;
+	}
+	printf("%s\n",c);
+	ft_strclr(c);
+	printf("%s\n",c);	
+}
