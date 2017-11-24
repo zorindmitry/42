@@ -208,3 +208,52 @@ int main()
 	ft_strclr(c);
 	printf("%s\n",c);	
 }
+/////ft_striter/////
+void			uf_striter_callback(char *s)
+{
+	*s = *s + 1;
+}
+
+int				main(void)
+{
+	char		str[] = "Hello";
+
+	ft_striter(NULL, NULL);
+	ft_striter(str, NULL);
+	ft_striter(str, uf_striter_callback);
+	printf("%s\n",str);
+	return (1);
+}
+///////ft_strmap//////
+char foo(char c)
+{
+	return c+1;
+}
+
+int main()
+{
+	char i[99] = "Hello";
+	printf("%s\n",i);
+	char *ret = ft_strmap(i, foo);
+	printf("%s\n",ret);
+	return 0;
+}
+/////ft_strmapi//////
+char			uf_strmapi_callback(unsigned int i, char s)
+{
+	return (s + i);
+}
+
+int				main(void)
+{
+	char		str[] = "Hello";
+	char		empty[] = "";
+	char		*ret;
+
+	ft_strmapi(NULL, NULL);
+	ft_strmapi(empty, NULL);
+	ret = ft_strmapi(str, uf_strmapi_callback);
+	printf("%s\n",ret);///"Hfnos"
+
+	return (1);
+}

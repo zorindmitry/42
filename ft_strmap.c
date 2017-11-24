@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striter.c                                       :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dzorin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 12:13:43 by dzorin            #+#    #+#             */
-/*   Updated: 2017/11/24 12:13:44 by dzorin           ###   ########.fr       */
+/*   Created: 2017/11/24 13:27:47 by dzorin            #+#    #+#             */
+/*   Updated: 2017/11/24 13:27:49 by dzorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_striter(char *s, void (*f)(char *))
+char	*ft_strmap(char const *s, char (*f)(char))
 {
-	int i;
+	int		i;
+	char	*res;
 
 	i = 0;
-	if (s == NULL || f == NULL)
-		return ;
-	while (s[i] != '\0')
+	if (!s || !f)
+		return (NULL);
+	res = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (res)
 	{
-		f(&s[i]);
-		i++;
+		while (s[i] != '\0')
+		{
+			res[i] = f(s[i]);
+			i++;
+		}
 	}
+	res[i] = '\0';
+	return (res);
 }
-
