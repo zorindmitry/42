@@ -1,33 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dzorin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 18:08:24 by dzorin            #+#    #+#             */
-/*   Updated: 2017/11/21 18:08:26 by dzorin           ###   ########.fr       */
+/*   Created: 2017/11/29 17:32:01 by dzorin            #+#    #+#             */
+/*   Updated: 2017/11/29 17:32:03 by dzorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcat(char *s1, const char *s2)
+char	*ft_strtrim(char const *s)
 {
+	char *res;
+	int len;
 	int i;
-	int j;
 
 	i = 0;
-	j = 0;
-	while (s1[i] != '\0')
-	{
+	len = ft_strlen(c);
+	if (!s)
+		return (NULL);
+	while (s[len - 1] == ' ' || s[len - 1] == '\t' || s[len - 1] == '\n')
+		len--;
+	while (s[i] == ' ' || s[i] == '\t' || s[i] == '\n')
+	{ 
 		i++;
+		len--;
 	}
-	while (s2[j] != '\0')
+	res = (char *)malloc(sizeof(char) * (len + 1));
+	if (!res)
+		return (NULL);
+	while (j < len)
 	{
-		s1[i + j] = s2[j];
-		j++;
+		res[j] = s[i];
 	}
-	s1[i + j] = '\0';
-	return (s1);
+
+int		main(void)
+{
+	char a[] = "   Hello   world   ";
+	printf("%s\n", ft_strtrim(a));
+	return 0;
 }

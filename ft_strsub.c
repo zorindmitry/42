@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dzorin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/21 18:08:24 by dzorin            #+#    #+#             */
-/*   Updated: 2017/11/21 18:08:26 by dzorin           ###   ########.fr       */
+/*   Created: 2017/11/29 16:30:21 by dzorin            #+#    #+#             */
+/*   Updated: 2017/11/29 16:30:23 by dzorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcat(char *s1, const char *s2)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	int i;
-	int j;
+	char	*res;
+	size_t	i;
 
 	i = 0;
-	j = 0;
-	while (s1[i] != '\0')
+	if (!s)
+		return (NULL);
+	if (start > ft_strlen(s))
+		return (NULL);
+	res = (char *)malloc(sizeof(char) * (len + 1));
+	if (!res)
+		return (NULL);
+	while ((i < len) && (s[start] != '\0'))
 	{
+		res[i] = s[start];
 		i++;
+		start++;
 	}
-	while (s2[j] != '\0')
-	{
-		s1[i + j] = s2[j];
-		j++;
-	}
-	s1[i + j] = '\0';
-	return (s1);
+	res[i] = '\0';
+	return (res);
 }
