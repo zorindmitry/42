@@ -14,17 +14,12 @@
 
 int length_one_word (char *s, char c)
 {
-	int len;
+	int		i;
 
-	len = 0;
-	//whie (*s == c)
-	//	s++;
-	while (*s && *s != c)
-	{
-		len++;
-		s++;
-	}
-	return (len);
+	i = 0;
+	while (s[i] && s[i] != c)
+		i++;
+	return (i);
 }
 int count_words(char *s, char c)
 {
@@ -33,15 +28,15 @@ int count_words(char *s, char c)
 
 	num = 0;
 	i = 0;
-	while(s[i] == c )
-		i++;
 	while(s[i] != '\0')
 	{
-		while(s[i] != c)
+		if (s[i] == c)
 			i++;
-		num++;
-		while(s[i] == c)
+		if (s[i] == c && s[i+1] != c)
+		{
 			i++;
+			num++;
+		}
 	}
 	return (num);
 }	
@@ -78,6 +73,7 @@ char	**ft_strsplit(char const *s, char c)
 		res[j][k] = '\0';
 		j++;
 	}
+	res[j][0] = '\0';
 	return (res);
 }
 
@@ -87,8 +83,8 @@ int					main(void)
 	int i = 0;
 	int k = 0;
 	int j = 0;
-	char s[] = "-qwe-asd--zx-zxc";
-	char c = '-';
+	char s[] = "*qwe*asd**zx*zxc";
+	char c = '*';
 
 	printf("num words :%d\n", count_words(s, c));
 	char **res_s = ft_strsplit(s, c);
