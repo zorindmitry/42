@@ -5,9 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dzorin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 19:31:59 by dzorin            #+#    #+#             */
-/*   Updated: 2017/11/29 19:32:00 by dzorin           ###   ########.fr       */
+/*   Created: 2017/12/01 09:30:44 by dzorin            #+#    #+#             */
+/*   Updated: 2017/12/01 10:06:54 by dzorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
+void	ft_putstr(char *str)
+{
+	int index;
+
+	index = 0;
+	while (str[index] != '\0')
+	{
+		ft_putchar(str[index]);
+		index++;
+	}
+}
