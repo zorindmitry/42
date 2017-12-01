@@ -59,7 +59,7 @@ char	**ft_strsplit(char const *s, char c)
 	if(!(res = (char **)malloc(sizeof(char *) * (count_words((char*)s, c) + 1))))
 		return (NULL);
 
-	while (s[i])
+	while (*s)
 	{
 		while (*s == c)
 			s++;
@@ -86,14 +86,20 @@ int					main(void)
 {
 	int i = 0;
 	int k = 0;
+	int j = 0;
 	char s[] = "-qwe-asd--zx-zxc";
 	char c = '-';
 
 	printf("num words :%d\n", count_words(s, c));
 	char **res_s = ft_strsplit(s, c);
 	while(res_s[i] != '\0')  ///s[i][k];
-	{
-		printf("%c",s[i]);
+	{	
+		j = 0;
+		while (res_s[i][j] !='\0')
+		{
+			printf("%c",res_s[i][j]);
+			j++;
+		}
 		i++;
 	}
 	return (0);
