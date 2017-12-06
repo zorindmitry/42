@@ -12,10 +12,12 @@
 
 #include "libft.h"
 
-int len_of_n(int n)
+int		len_of_n(int n)
 {
 	int iter;
-	while(n)
+
+	iter = 0;
+	while (n)
 	{
 		n = n / 10;
 		iter++;
@@ -23,71 +25,39 @@ int len_of_n(int n)
 	return (iter);
 }
 
-char *ft_mall(int n)
+void	check_minus(int *n, int *minus)
 {
-	char	*res;
-	int		len;
-	int i;
-
-	i = n;
-
-	len = len_of_n(n);
-	int len_i = len;
-	printf("%d\n", len);
-	if (!(res = (char *)malloc((sizeof(char)) * (len + 1))))
-		return (NULL);
-	ft_memset(res, '0', len + 1);
-	while (len > 0)
+	if (*n < 0)
 	{
-		printf("%d\n", i);
-		res[len--] = i%10 + '0';
-		i = i/10;
-		printf("%s\n",res);
+		*n *= -1;
+		*minus = 1;
 	}
-
-	return (res);
 }
 
 char	*ft_itoa(int n)
 {
-	char *res;
+	char	*res;
+	int		len;
+	int		minus;
 
+	minus = 0;
 	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	if (n == 0)
+		return (ft_strdup("0"));
+	check_minus(&n, &minus);
+	len = len_of_n(n) + minus;
+	if (!(res = (char *)malloc(len)))
+		return (NULL);
+	res[len] = '\0';
+	len--;
+	while (len >= 0)
 	{
-		res = ft_strdup("-2147483648");
+		res[len] = n % 10 + '0';
+		n = n / 10;
+		len--;
 	}
-	else if (n < 0)
-	{
-		printf("-1\n");
-		res = ft_strcat("-",ft_mall(-n));
-	}
-	else if (n > 0)
-	{
-		printf("1\n");
-		res = ft_strdup(ft_mall(n));
-	}
-	else
-	{
-		printf("2\n");
-		res = ft_strdup("0");
-	}
+	if (minus > 0)
+		res[0] = '-';
 	return (res);
 }
-
-int main()
-{
-	
-	int i = -214648;
-	char *c = ft_itoa(i);
-	printf("%s\n", c);
-	return (0);
-}
-
-
-
-
-
-
-
-
-
