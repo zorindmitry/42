@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int		len_of_n(int n)
+static int	len_of_n(int n)
 {
 	int iter;
 
@@ -25,7 +25,7 @@ int		len_of_n(int n)
 	return (iter);
 }
 
-void	check_minus(int *n, int *minus)
+static void	check_minus(int *n, int *minus)
 {
 	if (*n < 0)
 	{
@@ -34,7 +34,7 @@ void	check_minus(int *n, int *minus)
 	}
 }
 
-char	*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
 	char	*res;
 	int		len;
@@ -47,7 +47,7 @@ char	*ft_itoa(int n)
 		return (ft_strdup("0"));
 	check_minus(&n, &minus);
 	len = len_of_n(n) + minus;
-	if (!(res = (char *)malloc(len)))
+	if (!(res = (char *)malloc(sizeof(char) * len)))
 		return (NULL);
 	res[len] = '\0';
 	len--;
