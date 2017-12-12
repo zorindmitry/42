@@ -6,97 +6,72 @@
 /*   By: dzorin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 19:31:24 by dzorin            #+#    #+#             */
-/*   Updated: 2017/11/29 19:31:25 by dzorin           ###   ########.fr       */
+/*   Updated: 2017/12/12 14:27:48 by dzorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int length_one_word (char *s, char c)
+int		wordlen(char const *str, char c)
 {
-	int		i;
+	int		len;
 
-	i = 0;
-	while (s[i] && s[i] != c)
-		i++;
-	return (i);
-}
-int count_words(char *s, char c)
-{
-	int num;
-	int i;
-
-	num = 0;
-	i = 0;
-	while(s[i] != '\0')
+	len = 0;
+	while (*str != c && *str != '\0')
 	{
-		if (s[i] == c)
-			i++;
-		if (s[i] == c && s[i+1] != c)
-		{
-			i++;
-			num++;
-		}
+		len++;
+		str++;
 	}
-	return (num);
-}	
+	return (len);
+}
+
+int		countword(char const *str, char c)
+{
+	int		count_word;
+	int		in_char;
+
+	count_word = 0;
+	in_char = 0;
+	if (str == NULL)
+		return (0);
+	while (*str != '\0')
+	{
+		if (in_char == 1 && *str == c)
+			in_char = 0;
+		if (in_char == 0 && *str != c)
+		{
+			in_char = 1;
+			count_word++;
+		}
+		str++;
+	}
+	return (count_word);
+}
 
 char	**ft_strsplit(char const *s, char c)
 {
-	char **res;
-	char *in_res;
-	int i;
-	int j;
-	int k;
+	int		count_word;
+	int		index;
+	int		len;
+	char	**arrfunc;
+	char	*temp;
 
-	i = 0;
-	j = 0;
-	if(!(res = (char **)malloc(sizeof(char *) * (count_words((char*)s, c) + 1))))
+	index = 0;
+	count_word = countword(s, c);
+	if (!(arrfunc = (char**)malloc(sizeof(char*) * count_word + 1)))
 		return (NULL);
-
-	while (*s)
+	while (count_word--)
 	{
-		while (*s == c)
+		while (*s == c && *s != '\0')
 			s++;
-		if(!(res[j] = (char *)malloc(sizeof(char) * length_one_word((char *)s, c) + 1)))
-			return (NULL);
-		printf("len words: %d\n", length_one_word((char *)s, c));
-		
-		k = 0;
-		while (*s && *s != c)
-		{
-			res[j][k] = *s;
-			printf("%c\n", res[j][k]);
-			k++;
-			s++;
-		}
-		res[j][k] = '\0';
-		j++;
+		len = wordlen(s, c);
+		temp = (char*)malloc(sizeof(char) * len + 1);
+		s += len;
+		temp[len + 1] = '\0';
+		while (len-- != -1)
+			temp[len] = s[len];
+		arrfunc[index++] = temp;
 	}
-	res[j][0] = '\0';
-	return (res);
-}
-
-
-int					main(void)
-{
-	int i = 0;
-	int k = 0;
-	int j = 0;
-	char s[] = "*qwe*asd**zx*zxc";
-	char c = '*';
-
-	printf("num words :%d\n", count_words(s, c));
-	char **res_s = ft_strsplit(s, c);
-	while(res_s[i] != '\0')  ///s[i][k];
-	{	
-		j = 0;
-		while (res_s[i][j] !='\0')
-		{
-			printf("%c",res_s[i][j]);
-			j++;
-		}
-		i++;
-	}
-	return (0);
+	arrfunc[index] = NULL;
+	return (arrfunc);
 }
