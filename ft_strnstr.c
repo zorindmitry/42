@@ -24,6 +24,8 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	bigi = (char *)big;
 	liti = (char *)little;
 
+	if (!*bigi && !*liti)
+		return ("");
 	len_liti = ft_strlen(bigi);
 
 	while (bigi[i] != '\0')
@@ -31,7 +33,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 		j = 0;
 		while (liti[j] == bigi[i + j])
 		{
-			if (liti[j] == '\0' && len_liti >= len)
+			if (liti[j] == '\0' && len_liti < len)
 				return (&bigi[i]);
 			j++;
 		}

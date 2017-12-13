@@ -33,6 +33,10 @@ int	ft_atoi(const char *str)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
+		if ((res > 922337203685477580 || (res == 922337203685477580 && (str[i] - '0') > 7)) && minus == 1)
+			return (-1);
+		else if ((res > 922337203685477580 || (res == 922337203685477580 && (str[i] - '0') > 8)) && minus == -1)
+			return (0);
 		res = res * 10 + str[i] - '0';
 		i++;
 	}

@@ -47,7 +47,7 @@ char		*ft_itoa(int n)
 		return (ft_strdup("0"));
 	check_minus(&n, &minus);
 	len = len_of_n(n) + minus;
-	if (!(res = (char *)malloc(sizeof(char) * len)))
+	if (!(res = (char *)malloc(sizeof(char) * len + 1)))
 		return (NULL);
 	res[len] = '\0';
 	len--;
