@@ -16,29 +16,35 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	int		i;
 	int		j;
-	size_t	len_liti;
-	char 	*bigi;
-	char	*liti;
+	size_t	len_lit;
 
 	i = 0;
-	bigi = (char *)big;
-	liti = (char *)little;
 
-	if (!*bigi && !*liti)
-		return ("");
-	len_liti = ft_strlen(bigi);
+	len_lit = ft_strlen(big);
 
-	while (bigi[i] != '\0')
+	while (big[i] != '\0' && len_lit)
 	{
 		j = 0;
-		while (liti[j] == bigi[i + j])
+		while (little[j] == big[i + j])
 		{
-			if (liti[j] == '\0' && len_liti < len)
-				return (&bigi[i]);
+			if (little[j] == '\0' && len_lit < len)
+				return ((char *)big);
 			j++;
 		}
-
 		i++;
 	}
 	return (NULL);
+}
+
+int main()
+{
+	char	*s1 = "oh no not the empty string !";
+	char	*s2 = "oh no not the empty string !";
+	size_t	max = strlen(s2);
+
+	char	*i1 = strnstr(s1, s2, max);
+	char	*i2 = ft_strnstr(s1, s2, max);
+	printf("%s\n", i1);
+	printf("%s\n", i2);
+	return 0;
 }
