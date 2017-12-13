@@ -23,7 +23,7 @@ char	*ft_strncat(char *s1, const char *s2, size_t n)
 	{
 		i++;
 	}
-	while (j < n)
+	while (j < n && s2[j])
 	{
 		s1[i + j] = s2[j];
 		j++;

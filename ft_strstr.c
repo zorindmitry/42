@@ -16,8 +16,14 @@ char	*ft_strstr(const char *big, const char *little)
 {
 	int i;
 	int j;
+	int length;
 
 	i = 0;
+	length = 0;
+	while (little[length] != '\0')
+		length++;
+	if (!length)
+		return ((char*)big);
 	while (big[i] != '\0')
 	{
 		j = 0;
@@ -27,6 +33,7 @@ char	*ft_strstr(const char *big, const char *little)
 				return ((char*)(big + i));
 			j++;
 		}
+
 		i++;
 	}
 	return (NULL);
