@@ -32,6 +32,5 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		}
 		res[i] = '\0';
 	}
-
 	return (res);
 }

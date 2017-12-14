@@ -33,7 +33,6 @@ char	*ft_strstr(const char *big, const char *little)
 				return ((char*)(big + i));
 			j++;
 		}
-
 		i++;
 	}
 	return (NULL);

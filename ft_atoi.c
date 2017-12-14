@@ -12,33 +12,40 @@
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+static int	ft_is_space(char c)
 {
-	int i;
-	long long int res;
-	int minus;
+	if (c == '\t' || c == '\n' || c == '\v'
+		|| c == '\f' || c == '\r' || c == ' '
+		|| c == '+')
+		return (1);
+	return (0);
+}
 
-	i = 0;
+int			ft_atoi(const char *str)
+{
+	long long int	res;
+	int				minus;
+
 	res = 0;
 	minus = 1;
-	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
-		|| str[i] == '\f' || str[i] == '\r' || str[i] == ' '
-		|| str[i] == '+')
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	while (ft_is_space(*str))
+		str++;
+	if (*str == '-' || *str == '+')
 	{
-		if (str[i] == '-')
+		if (*str == '-')
 			minus = -1;
-		i++;
+		str++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (*str >= '0' && *str <= '9')
 	{
-		if ((res > 922337203685477580 || (res == 922337203685477580 && (str[i] - '0') > 7)) && minus == 1)
+		if ((res > 922337203685477580 ||
+			(res == 922337203685477580 && (*str - '0') > 7)) && minus == 1)
 			return (-1);
-		else if ((res > 922337203685477580 || (res == 922337203685477580 && (str[i] - '0') > 8)) && minus == -1)
+		else if ((res > 922337203685477580 ||
+			(res == 922337203685477580 && (*str - '0') > 8)) && minus == -1)
 			return (0);
-		res = res * 10 + str[i] - '0';
-		i++;
+		res = res * 10 + *str - '0';
+		str++;
 	}
 	return (minus * res);
 }

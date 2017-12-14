@@ -54,9 +54,10 @@ char		**ft_strsplit(char const *s, char c)
 	int		index;
 	int		len;
 	char	**arrfunc;
-	char	*temp;
 
 	index = 0;
+	if (!s)
+		return (0);
 	count_word = countword(s, c);
 	if (!(arrfunc = (char**)malloc(sizeof(char*) * count_word + 1)))
 		return (NULL);
@@ -65,12 +66,10 @@ char		**ft_strsplit(char const *s, char c)
 		while (*s == c && *s != '\0')
 			s++;
 		len = wordlen(s, c);
-		temp = (char*)malloc(sizeof(char) * len + 1);
+		if (!(arrfunc[index] = ft_strncpy(ft_strnew(len), s, len)))
+			return (NULL);
 		s += len;
-		temp[len + 1] = '\0';
-		while (len-- != -1)
-			temp[len] = s[len];
-		arrfunc[index++] = temp;
+		index++;
 	}
 	arrfunc[index] = NULL;
 	return (arrfunc);
