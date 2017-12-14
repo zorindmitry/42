@@ -6,111 +6,29 @@
 /*   By: dzorin <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 14:55:00 by dzorin            #+#    #+#             */
-/*   Updated: 2017/11/22 14:55:02 by dzorin           ###   ########.fr       */
+/*   Updated: 2017/12/14 18:34:49 by dzorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-#define		STRING_1	"the cake is a lie !\0I'm hidden lol\r\n"
-#define		STRING_2	"there is no stars in the sky"
-
-size_t  ft_strlcat(char *dst, const char *src, size_t size)
+size_t	ft_strlcat(char *s1, const char *s2, size_t size)
 {
-	char	*cur;
-	char 	*reader;
-	size_t	len;
+	size_t	i;
+	int		j;
+	size_t	len_s2;
 
-	cur = (char *)ft_memchr(dst, '\0', size);
-	if (cur == NULL)
-		return (size + ft_strlen(src));
-	reader = (char *)src;
-	len = (size_t)(cur - dst) + ft_strlen(reader);
-	while ((size_t)(cur - dst) < size - 1 && *reader != '\0')
+	i = 0;
+	j = 0;
+	len_s2 = ft_strlen(s2);
+	while (s1[i] && i < size)
+		i++;
+	while (s2[j] && (i + j + 1) < size)
 	{
-		*cur = *reader;
-		cur++;
-		reader++;
-	}
-	*cur = '\0';
-	return (len);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
-
-{
-	size_t i;
-	size_t j;
-	size_t k;
-
-	i = ft_strlen(dst);
-	j = ft_strlen(src);
-	k = size;
-
-	while (dst[j] && j < size)
-	{
-		dst[i + j] = src[j];
+		s1[i + j] = s2[j];
 		j++;
-	dst[j + size] = '\0';
-	return (j + size);
+	}
+	if (i != size)
+		s1[i + j] = '\0';
+	return (i + len_s2);
 }
-
-int main()
-{
-	char	*str = STRING_1;
-	char	buff1[555] = STRING_2;
-	char	buff2[555] = STRING_2;
-
-	int r1 = strlcat(buff1, str, 4);
-	int r2 = ft_strlcat(buff2, str, 4);
-
-	printf("%s\n", buff1);
-	printf("%s\n", buff2);
-	printf("%d\n", r1);
-	printf("%d\n", r2);
-
-	return 0;
-}
-
-int main()
-{
-	char	s1[4] = "";
-	char	s2[4] = "";
-	//int r1 = strlcat(s1, "thx to ntoniolo for this test !", 4);
-	int r2 = ft_strlcat(s2, "thx to ntoniolo for this test !", 4);
-
-
-	printf("%s\n", s1);
-	printf("%s\n", s2);
-	//printf("%d\n", r1);
-	printf("%d\n", r2);
-	return 0;
-}*/
